@@ -88,9 +88,19 @@ class EquipoController extends Controller
     {
          //$data = Equipo::find($equipo);
         
-         return response()->json([
+        $disciplina = Disciplina::find($equipo->disciplina_id);
+        $nombre = $equipo->nombre;
+        $descripcion = $equipo->descripcion;
+        $image = $equipo->image;
+        $result = array("nombre" => $nombre, 
+            "descripcion" => $descripcion,
+            "image" => $image,
+            "disciplina" => $disciplina, 
+            "equipo" => $equipo);
+
+        return response()->json([
             "status" => true, 
-            "object" => $equipo
+            "object" => $result
         ]);
     }
 

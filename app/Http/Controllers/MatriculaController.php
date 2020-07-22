@@ -78,11 +78,12 @@ class MatriculaController extends Controller
     public function show(Matricula $matricula)
     {
         //
-        
+        $persona = Persona::find($matricula->persona_id);
         $carrera = Carrera::find($matricula->carrera_id);
         $seccion = Seccionperiodo::find($matricula->seccionperiodo_id);
         $result = array("carrera" => $carrera, 
-            "seccion" => $seccion, 
+            "seccion" => $seccion,
+            "persona" => $persona, 
             "matricula" => $matricula);
 
         return response()->json([

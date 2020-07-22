@@ -52,5 +52,6 @@ Route::group([
     Route::apiResource('usuariorols', 'UsuariorolController');
     Route::apiResource('matriculas', 'MatriculaController');
     Route::apiResource('competidorequipos', 'CompetidorequipoController');
+    Route::apiResource('competidorequipos', 'CompetidorequipoController');
     ///////////////////////////////////////////////////////////////////////////
 });

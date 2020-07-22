@@ -24,8 +24,6 @@ class CreateDesafiosTable extends Migration
             $table->foreign('retador_id')->references('id')->on('equipos');
             $table->integer('invitado_puntaje')->nullable();
             $table->integer('retador_puntaje')->nullable();
-            $table->string('ganador')->nullable();
-            $table->integer('parent_id');
             $table->datetime('fecha',0);
             $table->string('fase', 250);
             $table->boolean("visible");

@@ -77,9 +77,15 @@ class CompetidorequipoController extends Controller
        //$equipo_id = Equipo::find($id);
         //$data = Competidorequipo::all();
 
+        $matricula = Matricula::find($competidorequipo->matricula_id);
+        $equipo = Equipo::find($competidorequipo->equipo_id);
+        $result = array("matricula" => $matricula, 
+            "equipo" => $equipo,
+            "competidorequipo" => $competidorequipo);
+
         return response()->json([
             "status" => true, 
-            "object" => $competidorequipo
+            "object" => $result
         ]);
     }
 

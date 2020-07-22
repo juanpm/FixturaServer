@@ -57,7 +57,6 @@ class DesafioController extends Controller
                 "retador" => Equipo::find($item->retador_id),
                 "invitado_puntaje" => $item->invitado_puntaje,
                 "retador_puntaje" => $item->retador_puntaje,
-                "ganador" => $item->ganador,
             );
             array_push($compilado, $xrow);
         }
@@ -91,8 +90,6 @@ class DesafioController extends Controller
         $retador_id = $request->input("retador_id");
         $invitado_puntaje = $request->input("invitado_puntaje");
         $retador_puntaje = $request->input("retador_puntaje");
-        $ganador = $request->input("ganador");
-        $parent_id = $request->input("parent_id");
         $fecha = $request->input("fecha");
         $fase = $request->input("fase");
 
@@ -102,8 +99,6 @@ class DesafioController extends Controller
         $desafio_object->retador_id = $retador_id;
         $desafio_object->invitado_puntaje = $invitado_puntaje;
         $desafio_object->retador_puntaje = $retador_puntaje;
-        $desafio_object->ganador = $ganador;
-        $desafio_object->parent_id = $parent_id;
         $desafio_object->fecha = $fecha;
         $desafio_object->fase = $fase;
         $desafio_object->visible = true;
@@ -125,9 +120,23 @@ class DesafioController extends Controller
     {
         //Esto nos permite ver los datos de manera individual
         //con el id
+
+        $disciplina = Disciplina::find($desafio->disciplina_id);
+        $invitado = Equipo::find($desafio->invitado_id);
+        $retador = Equipo::find($desafio->retador_id);
+        $invitado_puntaje = $desafio->invitado_puntaje;
+        $retador_puntaje = $desafio->retador_puntaje;
+        $fase = $desafio->fase;
+        $fecha = $desafio->fecha;
+        $result = array("invitado" => $invitado, 
+            "retador" => $retador,
+            "disciplina" => $disciplina, 
+            "fecha" => $fecha,
+            "desafio" => $desafio);
+
         return response()->json([
             "status" => true, 
-            "object" => $desafio
+            "object" => $result
         ]);
     }
 
@@ -158,8 +167,6 @@ class DesafioController extends Controller
         $desafio->retador_id = $request->input("retador_id");
         $desafio->invitado_puntaje = $request->input("invitado_puntaje");
         $desafio->retador_puntaje = $request->input("retador_puntaje");
-        $desafio->ganador = $request->input("ganador");
-        $desafio->parent_id = $request->input("parent_id");
         $desafio->fecha = $request->input("fecha");
         $desafio->fase = $request->input("fase");
         //$competidorequipo->visible = $request->true;

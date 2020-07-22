@@ -83,9 +83,17 @@ class DisciplinaController extends Controller
      */
     public function show(Disciplina $disciplina)
     {
+        $olimpiada = Olimpiada::find($disciplina->olimpiada_id);
+        $nombre = $disciplina->nombre;
+        $participantes = $disciplina->participantes;
+        $result = array("nombre" => $nombre, 
+            "participantes" => $participantes,
+            "olimpiada" => $olimpiada,
+            "disciplina" => $disciplina);
+
         return response()->json([
             "status" => true, 
-            "object" => $disciplina
+            "object" => $result
         ]);
     }
 
