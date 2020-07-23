@@ -21,9 +21,11 @@ class CompetidorequipoController extends Controller
         $data = Competidorequipo::where("visible", true)->get();
         $compilado = array();
         foreach($data as $item) {
+            $m = Matricula::find($item->matricula_id);
             $xrow = array(
                 "id" => $item->id,
-                "matricula" => Matricula::find($item->matricula_id),
+                "matricula" => $m,
+                "persona" => Persona::find($m->persona_id),
                 "equipo" => Equipo::find($item->equipo_id)
             );
             array_push($compilado, $xrow);

@@ -32,6 +32,25 @@ class EquipoController extends Controller
         
         return response()->json(array("status" => true, "objects" => $compilado));
     }
+     public function indexByDisciplina(Request $request, $disciplina)
+    {
+        //
+        //$result = array();
+        $data = Equipo::where([["visible","=", true],["disciplina_id", $disciplina]])->get();
+        $compilado = array();
+        foreach($data as $item) {
+            $xrow = array(
+                "id" => $item->id,
+                "nombre" => $item->nombre,
+                "disciplina" => Disciplina::find($item->disciplina_id),
+                "descripcion" => $item->descripcion,
+                "image" => $item->image
+            );
+            array_push($compilado, $xrow);
+        }
+        
+        return response()->json(array("status" => true, "objects" => $compilado));
+    }
 
     /**
      * Show the form for creating a new resource.

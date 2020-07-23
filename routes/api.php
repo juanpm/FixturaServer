@@ -46,6 +46,7 @@ Route::group([
     Route::apiResource('carreras', 'CarreraController');
     Route::apiResource('seccionperiodos', 'SeccionperiodoController');
     Route::apiResource('disciplinas', 'DisciplinaController');
+    Route::get("equipos/indexByDisciplina/{disciplina}", "EquipoController@indexByDisciplina");
     Route::apiResource('equipos', 'EquipoController');
     Route::apiResource('users', 'UsuarioController');
     Route::apiResource('rols', 'RolController');
